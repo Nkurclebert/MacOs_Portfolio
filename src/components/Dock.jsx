@@ -3,10 +3,15 @@ import { useGSAP } from '@gsap/react';
 import React, { use, useRef } from 'react'
 import { Tooltip } from 'react-tooltip'
 import gsap from 'gsap';
+import useWindowStore from '#store/window';
 
 
 const Dock = () => {
 
+    // Access window store actions and state
+    const {openWindow, closeWindow, focusWindow, windows} = useWindowStore();
+
+    // Ref for the Dock container
     const dockRef = useRef(null);
     
     // GSAP Animation for Dock Icons
@@ -58,8 +63,26 @@ const Dock = () => {
         }
     },[]);
 
+    // Function to toggle application windows
     const toggleApp = (app) => {
-        // TODO Implement open window logic
+        // Prevent action if the app cannot be opened
+        if(!app.canOpen) return;
+
+        // Get the corresponding window from the store
+        const window = windows[app.id];
+        if (!window) {
+            console.error(`Window not found for app: ${app.id}`);
+            return;
+        }
+
+        // Open or close the window based on its current state
+        if(window.isOpen) {
+            closeWindow(app.id);
+        } else {
+            openWindow(app.id);
+        }
+
+        console.log(windows)
     }
     
   return (

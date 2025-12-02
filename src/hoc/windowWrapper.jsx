@@ -8,8 +8,7 @@ const windowWrapper = (Component, windowKey) => {
     // Higher-Order Component to wrap window components
     const Wrapped = (props) => {
         // Access window store state and actions
-        const {focuseWindow, windows} = useWindowStore();
-
+        const {focusWindow, windows} = useWindowStore();
         // Get window state
         const {isOpen, zIndex} = windows[windowKey];
         
@@ -36,8 +35,7 @@ const windowWrapper = (Component, windowKey) => {
             if(!el) return;
 
             const [instance] = Draggable.create(el, 
-                {onPress: () => focuseWindow(windowKey)}
-            )
+                {onPress: () => focusWindow(windowKey)}            )
             return () => instance.kill();
         },[])
 

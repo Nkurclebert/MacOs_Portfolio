@@ -21,7 +21,7 @@ const openItem = (item) => {
     if(['fig', 'url'].includes(item.fileType) && item.href) 
         return window.open(item.href, '_blank');
     
-    openWindow(`${item.fileType} ${item.kind}`, item);
+    openWindow(`${item.fileType}${item.kind}`, item);
 } 
 
 // Function to render a list of locations

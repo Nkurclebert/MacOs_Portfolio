@@ -7,7 +7,7 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background-image: url("/images/wallpaper.png");
+  background-image: url("/images/wallpaper1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -269,27 +269,45 @@ body {
       @apply p-5;
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply grid grid-cols-5 gap-2.5;
 
         li {
+          @apply cursor-pointer overflow-hidden rounded-lg;
+
           img {
-            @apply size-full object-cover rounded-lg;
+            @apply size-32 object-cover rounded-lg transition-transform duration-200 hover:scale-110;
           }
 
           &:first-child {
-            @apply row-start-1 row-span-3 col-start-1 col-span-3;
+            @apply col-span-2 row-span-2;
+
+            img {
+              @apply size-full;
+            }
           }
 
           &:nth-child(2) {
-            @apply row-start-1 row-span-3 col-start-4 col-span-2;
+            @apply col-span-2 row-span-2;
+
+            img {
+              @apply size-full;
+            }
           }
 
           &:nth-child(3) {
-            @apply row-start-4 row-span-2 col-start-3 col-span-3;
+            @apply col-span-1;
+
+            img {
+              @apply size-32;
+            }
           }
 
           &:last-child {
-            @apply row-start-4 row-span-2 col-start-1 col-span-2;
+            @apply col-span-1;
+
+            img {
+              @apply size-32;
+            }
           }
         }
       }
